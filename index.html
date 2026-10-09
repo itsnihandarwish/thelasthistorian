@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#08070c">
+<title>The Last Historian</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main id="app">
+
+<section id="titleScreen" class="screen active">
+  <div class="titleBackdrop"></div>
+  <div class="titleCard">
+    <p class="society">THE GOL CHUHA HISTORICAL SOCIETY</p>
+    <p class="presents">presents</p>
+    <h1>THE LAST<br>HISTORIAN</h1>
+    <p class="sub">An account of Sir Gol Chuha Fahad Cheema</p>
+    <div class="warningBlock">
+      <p>Historical accuracy: disputed.</p>
+      <p>Personal attacks: intentional.</p>
+      <p>Headphones: unfortunately recommended.</p>
+    </div>
+    <button id="enterBtn">ENTER</button>
+  </div>
+</section>
+
+<section id="creditsScreen" class="screen black">
+  <div id="creditLine" class="fadeLine">written, directed, developed and produced by <button id="nihenBtn">Nihen™</button></div>
+  <div id="dateLine" class="fadeLine">10 October 2026</div>
+  <div id="placeLine" class="fadeLine">Somewhere in a kingdom of questionable historical legitimacy...</div>
+</section>
+
+<section id="gameScreen" class="screen">
+  <canvas id="game" width="640" height="360"></canvas>
+
+  <div id="hud">
+    <span id="chapter">LEVEL ONE&nbsp;&nbsp;THE KINGDOM</span>
+    <span>GEMS <b id="gemHud">0</b>/5&nbsp;&nbsp; CHEESE <b id="cheeseHud">0</b>&nbsp;&nbsp; ENEMIES <b id="enemyHud">0</b></span>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <div id="dialogue" class="overlay bottom hidden">
+    <div class="box">
+      <p id="speaker" class="speaker"></p>
+      <p id="dialogueText"></p>
+      <button id="dialogueNext">CONTINUE</button>
+    </div>
+  </div>
+
+  <div id="inspect" class="inspect hidden">
+    <button id="inspectBtn">INSPECT</button>
+  </div>
+
+  <div id="modal" class="overlay hidden">
+    <div class="box modalBox">
+      <p id="modalKicker" class="speaker"></p>
+      <h2 id="modalTitle"></h2>
+      <img id="modalImage" class="portrait hidden" alt="">
+      <p id="modalText"></p>
+      <div id="answerButtons" class="answerButtons hidden"></div>
+      <button id="modalAudio" class="hidden">PLAY FORBIDDEN RECORDING</button>
+      <button id="modalClose">CONTINUE</button>
+    </div>
+  </div>
+
+  <div id="bossCard" class="bossCard hidden">
+    <p class="speaker">FINAL GATEKEEPER</p>
+    <h2>SIR REGINALD THE INCONVENIENT</h2>
+    <p>Guardian of the Portal</p>
+    <p>Opponent of Progress</p>
+    <p>Employee of Questionable Loyalty</p>
+  </div>
+
+  <div class="mobileControls">
+    <div class="group">
+      <button id="leftBtn">◀</button>
+      <button id="rightBtn">▶</button>
+    </div>
+    <div class="group">
+      <button id="jumpBtn">JUMP</button>
+      <button id="attackBtn" class="locked">⚔</button>
+    </div>
+  </div>
+</section>
+
+<section id="observatoryArrival" class="screen black">
+  <div class="arrival">
+    <p id="unknownLocation" class="arrivalLine">LOCATION UNKNOWN</p>
+    <p id="knownLocation" class="arrivalLine hidden">LOCATION IDENTIFIED</p>
+    <h1 id="observatoryTitle" class="hidden">THE OBSERVATORY</h1>
+    <p id="arrivalArchivist" class="hidden">ARCHIVIST: Oh.<br><br>This is new.</p>
+    <button id="arrivalContinue" class="hidden">EXPLORE THE OBSERVATORY</button>
+  </div>
+</section>
+
+<section id="observatoryScreen" class="screen observatoryScreen">
+  <div class="obsShell">
+    <div class="obsHeader">
+      <p class="speaker">THE OBSERVATORY</p>
+      <p id="obsObjective">Explore the hall and find the telescope.</p>
+    </div>
+    <div class="obsScene" id="obsScene">
+      <div class="obsStars"></div>
+      <div class="obsWindow"><div class="saturnMini"></div></div>
+      <div class="obsTelescope"></div>
+      <div class="obsFloor"></div>
+      <img id="obsFahad" src="assets/art/fahad-stable.png" alt="Fahad in armour">
+      <div id="obsDog" class="doggy hidden"><div class="dogHead"></div><div class="helmet"></div><div class="dogBody"></div></div>
+    </div>
+    <div class="obsActions">
+      <button id="inspectChart">STAR CHART</button>
+      <button id="inspectInstrument">BRASS DEVICE</button>
+      <button id="useTelescope">USE TELESCOPE</button>
+      <button id="firstSkyBtn" class="hidden">THE FIRST SKY</button>
+      <button id="finalChamberBtn" class="hidden">FINAL CHAMBER</button>
+    </div>
+  </div>
+</section>
+
+<section id="telescopeScreen" class="screen telescopeScreen">
+  <div class="scopeShell">
+    <div class="scopeHeader"><p class="speaker">TELESCOPE NAVIGATION</p><p>Swipe or use the arrows. Centre a body to inspect it.</p></div>
+    <canvas id="scopeCanvas" width="640" height="360"></canvas>
+    <div class="scopeLabel"><h2 id="scopeName">JUPITER</h2><p id="scopeStatus">1 OF 5</p></div>
+    <div class="scopeControls">
+      <button id="scopePrev">◀</button>
+      <button id="scopeInspect">INSPECT</button>
+      <button id="scopeTravel">TRAVEL</button>
+      <button id="scopeNext">▶</button>
+    </div>
+    <button id="scopeBack" class="scopeBack">RETURN TO OBSERVATORY</button>
+  </div>
+</section>
+
+<section id="moonRouteScreen" class="screen moonRouteScreen">
+  <canvas id="moonCanvas" width="640" height="360"></canvas>
+  <div class="moonHeader"><span id="moonRouteName">IO</span><span>REACH THE BEACON</span></div>
+  <div id="moonMessage" class="moonMessage hidden"></div>
+  <div class="moonControls">
+    <div><button id="moonLeft">◀</button><button id="moonRight">▶</button></div>
+    <button id="moonJump">JUMP</button>
+  </div>
+</section>
+
+<section id="firstSkyScreen" class="screen black">
+  <div class="firstSkyWrap">
+    <p class="speaker">THE PERSONAL ARCHIVE</p>
+    <h1>THE FIRST SKY</h1>
+    <img src="assets/art/first-sky-moon.png" alt="Waxing crescent moon on 10 October 1999">
+    <p>The moon on 10 October 1999, Kuwait.</p>
+    <p>Before the kingdoms.<br>Before the portal.<br>Before the Observatory.<br><br>This was above him first.</p>
+    <button id="firstSkyBack">RETURN</button>
+  </div>
+</section>
+
+<section id="poemScreen" class="screen black">
+  <div class="poemWrap">
+    <div class="poemStars"></div>
+    <p id="poemText"></p>
+    <button id="poemNext">CONTINUE</button>
+  </div>
+</section>
+
+<section id="birthdayScreen" class="screen black">
+  <div class="birthdayCard">
+    <p class="society">MISSION COMPLETE</p>
+    <h1>HAPPY BIRTHDAY,<br>GOL CHUHA FAHAD CHEEMA</h1>
+    <p class="birthdayDate">10 October 2026</p>
+    <div id="finalStats" class="stats"></div>
+    <p class="finalLine">You were here. Things are different because you were.</p>
+    <button id="restartBtn">PLAY AGAIN</button>
+  </div>
+</section>
+
+</main>
+<script src="game.js"></script>
+</body>
+</html>
